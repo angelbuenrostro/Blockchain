@@ -1,8 +1,8 @@
 {
     "workbench.colorCustomizations": {
-        "activityBar.background": "#2E1D71",
-        "titleBar.activeBackground": "#40299E",
-        "titleBar.activeForeground": "#FAF9FD"
+        "activityBar.background": "#1f252b",
+        "titleBar.activeBackground": "#1f252b",
+        "titleBar.activeForeground": "#87b5fa",
     },
-    "python.pythonPath": "/Users/briandoyle/.local/share/virtualenvs/redo_bc_starter-LKhtEYjl/bin/python"
+    "python.pythonPath": "/usr/local/opt/python/bin/python3.7"
 }
