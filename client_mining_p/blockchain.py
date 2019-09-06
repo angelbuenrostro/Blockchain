@@ -142,7 +142,6 @@ class Blockchain(object):
             print("\n-------------------\n")
             # Check that the hash of the block is correct
             # TODO: Return false if hash isn't correct
-
             # Check that the Proof of Work is correct
             # TODO: Return false if proof isn't correct
 
@@ -162,10 +161,27 @@ node_identifier = str(uuid4()).replace('-', '')
 blockchain = Blockchain()
 
 
-@app.route('/mine', methods=['GET'])
+@app.route('/mine', methods=['POST'])
 def mine():
+    # Receive and validate or reject a new proof sent by client
+    # Return a message indicating success or failure, valid proofs fail for all senders except the 1st
+    values = request.get_json()
+    required = ['proof']
+    if not all(k in values for k in required):
+        return 'Missing Values', 400
+
+    # Validate proof
+    block_string = json.dumps(blockchain.last_block, sort_keys = True).encode()
+    proof = values.proof
+    response = {
+        'validation' : 'success'
+    }
+    if  blockchain.valid_proof(block_string, proof):
+        print(block_string)
+        print(proof)
+
     # We run the proof of work algorithm to get the next proof...
-    proof = blockchain.proof_of_work()
+    # proof = blockchain.proof_of_work()
 
     # We must receive a reward for finding the proof.
     # TODO:
