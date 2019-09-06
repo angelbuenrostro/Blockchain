@@ -6,9 +6,11 @@ import sys
 
 # TODO: Implement functionality to search for a proof 
 
-def search_proof(self):
+def proof_of_work(self):
+    '''
+    Searches for valid proof and returns it
+    '''
     
-
 
 if __name__ == '__main__':
     # What node are we interacting with?
