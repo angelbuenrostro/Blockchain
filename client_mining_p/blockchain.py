@@ -85,22 +85,23 @@ class Blockchain(object):
     def last_block(self):
         return self.chain[-1]
 
-    def proof_of_work(self):
-        """
-        Simple Proof of Work Algorithm
-        Find a number p such that hash(last_block_string, p) contains 6 leading
-        zeroes
-        :return: A valid proof for the provided block
-        """
-        block_string = json.dumps(self.last_block, sort_keys=True).encode()
-        proof = 0
-        while not self.valid_proof(block_string, proof):
-            proof += 1
 
-        print(block_string)
-        print(proof)
+    # def proof_of_work(self):
+        
+    #     #Simple Proof of Work Algorithm
+    #     #Find a number p such that hash(last_block_string, p) contains 6 leading
+    #     #zeroes
+    #     #:return: A valid proof for the provided block
+        
+    #     block_string = json.dumps(self.last_block, sort_keys=True).encode()
+    #     proof = 0
+    #     while not self.valid_proof(block_string, proof):
+    #         proof += 1
 
-        return proof
+    #     print(block_string)
+    #     print(proof)
+
+    #     return proof
 
     @staticmethod
     def valid_proof(block_string, proof):
@@ -117,10 +118,10 @@ class Blockchain(object):
         # TODO
         guess = f'{block_string}{proof}'.encode()
         guess_hash = hashlib.sha256(guess).hexdigest()
-        if guess_hash[:6] == "000000":
+        if guess_hash[:4] == "0000":
             print(guess)
             print(guess_hash)
-        return guess_hash[:6] == "000000"
+        return guess_hash[:4] == "0000"
 
     def valid_chain(self, chain):
         """
@@ -221,6 +222,14 @@ def full_chain():
     }
     return jsonify(response), 200
 
+
+# Add last block GET endpoint
+@app.route('/last_block', methods = ['GET'])
+def return_last_block():
+    response = {
+        'last_block': blockchain.chain[-1]
+    }
+    return jsonify(response), 200
 
 
 # Run the program on port 5000
