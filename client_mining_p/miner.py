@@ -6,6 +6,9 @@ import sys
 
 # TODO: Implement functionality to search for a proof 
 
+def search_proof(self):
+    
+
 
 if __name__ == '__main__':
     # What node are we interacting with?
