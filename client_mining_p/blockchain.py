@@ -117,10 +117,10 @@ class Blockchain(object):
         # TODO
         guess = f'{block_string}{proof}'.encode()
         guess_hash = hashlib.sha256(guess).hexdigest()
-        if guess_hash[:5] == "00000":
+        if guess_hash[:6] == "000000":
             print(guess)
             print(guess_hash)
-        return guess_hash[:5] == "00000"
+        return guess_hash[:6] == "000000"
 
     def valid_chain(self, chain):
         """
